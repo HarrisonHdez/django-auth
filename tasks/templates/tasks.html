@@ -1,0 +1,104 @@
+<style>
+    .lista {
+        width: 100%;
+    }
+
+    .lista__content {
+        width: 100%;
+        padding: 50px 0;
+    }
+
+    .lista__title {
+        color: #054A91;
+        padding-top: 200px;
+        text-align: center;
+    }
+
+    .lista__content ul {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 50px;
+    }
+
+    .lista__content a {
+        border: none;
+        text-decoration: none;
+        background: #008BF6;
+        padding: 10px 15px;
+        color: white;
+        width: 100%;
+        max-width: 160px;
+        text-align: center;
+    }
+
+    .lista__content li {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+
+    .lista__enlace {
+        color: #054A91;
+    }
+
+    .lista__description {
+        color: black;
+        text-align: left;
+    }
+
+    .lista__usuario {
+        color: black;
+    }
+
+    @media screen and (min-width: 575px) {
+
+        .lista__content ul {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+
+        .lista__content ul {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+
+        .lista__content ul {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+</style>
+
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<main class="lista">
+    <div class="lista__content container">
+        <ul>
+            {% for task in tasks %}
+            <li>
+
+                <strong class="lista__enlace">{{task.title}}</strong>
+
+
+                <p class="lista__description">{{task.description}}</p>
+                <p class="lista__usuario">{{task.user.username}}</p>
+
+                <p>{{task.datecompleted|date:'M j Y:i'}}</p>
+                <a href="{% url 'task_detail' task.id %}">
+                    Editar producto
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</main>
+
+{% endblock %}

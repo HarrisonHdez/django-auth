@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<style>
+    .container {
+        max-width: 1200px;
+        width: 90%;
+        margin: auto;
+    }
+
+    .home {
+        width: 100%;
+    }
+
+    .home__content {
+        min-height: 840px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 800px;
+        gap: 33px;
+        width: 90%;
+    }
+
+    .home__title {
+        font-size: 8vw;
+        text-align: center;
+        color: #013D88;
+    }
+
+    .home__subtitle {
+        font-size: 15px;
+        text-align: center;
+        color: #013D88;
+    }
+
+    .home__button {
+        background-color: #008BF7;
+        color: white;
+        padding: 16px 36px;
+        border: none;
+        border-radius: 36px;
+        display: inline-flex;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    @media screen and (min-width: 768px) {
+        .home__title {
+            font-size: 60px;
+        }
+
+        .home__subtitle {
+            font-size: 20px;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .home__title {
+            font-size: 70px;
+        }
+    }
+</style>
+
+<header class="home">
+    <section class="home__content container ">
+        <h1 class="home__title">Bienvenido a Soelco <br> Tu tienda Online Favorita</h1>
+        <p class="home__subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat nemo, nam illo
+            itaque, voluptate quam dicta nobis, odio cupiditate veniam asperiores earum minima
+            !</p>
+
+
+        <button class="home__button">
+            Iniciar Compras
+        </button>
+    </section>
+
+</header>
+
+{% endblock %}

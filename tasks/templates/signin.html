@@ -1,0 +1,119 @@
+<style>
+    .form__container {
+        min-height: 900px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form {
+        max-width: 280px;
+        width: 90%;
+        color: black;
+        background: white;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-logo__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .form__logo {
+        max-width: 250px;
+        width: 100%;
+        text-align: center;
+        color: black;
+        display: inline-flex;
+    }
+
+    .form__paragraph {
+        padding: 0 10px;
+        color: #054A91;
+        text-align: center;
+    }
+
+    .form-grou__container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding-top: 30px;
+    }
+
+    .form__group {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin: auto;
+        text-align: left;
+    }
+
+    .form__group label {
+        color: #054A91;
+    }
+
+    .form__input {
+        height: 30px;
+    }
+
+    .form__button {
+        width: 90%;
+        margin: auto;
+        height: 30px;
+        border: none;
+        background: #008BF6;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+</style>
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+
+
+<main class="form__container">
+    <form class="form" action="/signin/" method="POST">
+        <div class="form-logo__container">
+            <img class="form__logo" src="{% static 'img/logo.png' %}" alt="logo">
+        </div>
+
+        <p class="form__paragraph">¡Bienvenido! <br> Ingresa con tu cuenta</p>
+        {% csrf_token %}
+        {{error}}
+
+
+        <div class="form-grou__container">
+            <div class="form__group">
+                <label for="username">Nombre:</label>
+                <input type="text" name="username" id="username" class="form__input" required>
+            </div>
+            <div class="form__group">
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" id="password" class="form__input" required>
+            </div>
+
+
+            <button class="form__button">
+                Ingresar
+            </button>
+        </div>
+
+
+    </form>
+</main>
+
+
+
+{% endblock %}

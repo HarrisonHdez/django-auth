@@ -1,0 +1,124 @@
+<style>
+    .form__container {
+        min-height: 900px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form {
+        max-width: 350px;
+        width: 90%;
+        color: black;
+        background: white;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-logo__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .form__logo {
+        max-width: 250px;
+        width: 100%;
+        text-align: center;
+        color: black;
+        display: inline-flex;
+    }
+
+    .form__paragraph {
+        padding: 0 10px;
+        color: #054A91;
+    }
+
+    .form-grou__container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding-top: 30px;
+    }
+
+    .form__group {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin: auto;
+        text-align: left;
+    }
+
+    .form__group label {
+        color: #054A91;
+    }
+
+    .form__input {
+        height: 30px;
+    }
+
+    .form__button {
+        width: 90%;
+        margin: auto;
+        height: 30px;
+        border: none;
+        background: #008BF6;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+</style>
+
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+{% load static %}
+
+
+<main class="form__container">
+    <form class="form" action="/signup/" method="POST">
+        <div class="form-logo__container">
+            <img class="form__logo" src="{% static 'img/logo.png' %}" alt="logo">
+        </div>
+
+        <p class="form__paragraph">¡Bienvenido!, Te invitamos a registrarte o iniciar sesion si ya eres usuario, esto es
+            necesario para
+            continuar comprando</p>
+
+        {{error}}
+        {% csrf_token %}
+        <!-- {{form}} -->
+
+        <div class="form-grou__container">
+            <div class="form__group">
+                <label for="username">Nombre:</label>
+                <input type="text" name="username" id="username" class="form__input" required>
+            </div>
+            <div class="form__group">
+                <label for="password1">Contraseña:</label>
+                <input type="password" name="password1" id="password1" class="form__input" required>
+            </div>
+            <div class="form__group">
+                <label for="password2">Confirmar Contraseña:</label>
+                <input type="password" name="password2" id="password2" class="form__input" required>
+            </div>
+
+
+
+            <button class="form__button">
+                Ingresar
+            </button>
+        </div>
+
+    </form>
+</main>
+{% endblock %}

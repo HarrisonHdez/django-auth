@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soelco</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        min-height: 100vh;
+        color: white;
+    }
+
+    .container {
+        max-width: 1200px;
+        width: 90%;
+        margin: auto;
+    }
+
+    .nav__promo {
+        min-height: 40px;
+        display: flex;
+        justify-content: center;
+        background: #054A91;
+        align-items: center;
+        text-align: center;
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .nav {
+        position: fixed;
+        width: 100%;
+        background: #ffffffe8;
+    }
+
+    .nav__content {
+        min-height: 90px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav__logo {
+        max-width: 280px;
+        height: 100%;
+        width: 70%;
+        object-fit: contain;
+    }
+
+    .nav__links {
+        display: none;
+    }
+
+    .nav__links.active {
+        display: flex;
+        flex-direction: column;
+        background-color: #054A91;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 20px 5px;
+    }
+
+    .nav__links a {
+        color: #ffffff;
+        padding: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .burger {
+        cursor: pointer;
+        display: block;
+    }
+
+    .line1,
+    .line2,
+    .line3 {
+        width: 25px;
+        height: 3px;
+        background-color: #000000;
+        margin: 5px;
+    }
+
+    @media screen and (min-width: 768px) {
+        .nav__promo {
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .burger {
+            display: none;
+        }
+
+        .nav__links {
+            display: flex;
+        }
+
+        .nav__links.active {
+            display: none;
+        }
+
+        .nav__links a {
+            color: #013D88;
+        }
+    }
+
+    .form-control {
+        background-color: red;
+    }
+</style>
+
+<body>
+
+    <nav class="nav">
+        <div class="nav__promo">
+            <p>¡Encuentra en nuestras tiendas una solucion de financiamiento para llever tus productos del hogar!</p>
+        </div>
+        <div class="nav__content container">
+
+            <img class="nav__logo" src="{% static 'img/logo.png' %}" alt="logo">
+
+            <ul class="nav__links">
+                <a href="/">Home</a>
+                {% if user.is_authenticated %}
+                <a href="/tasks">Productos</a>
+                <a href="/tasks_completed">Productos Vendidos</a>
+                <a href="/tasks/create">Crear Producto</a>
+                <a href="/logout">Logout</a>
+                {% else %}
+                <a href="/signup">Regristrarse</a>
+                <a href="/signin">Iniciar Sesion</a>
+                {% endif %}
+            </ul>
+
+            <div class="burger" onclick="toggleMenu()">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+
+
+    </nav>
+
+
+    {% if "tasks_completed" in request.path %}
+    <h1 class="lista__title">Productos Vendidos</h1>
+    {% else %}
+    <h1 class="lista__title">Producto en venta</h1>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>
+
+
+
+<script>
+    function toggleMenu() {
+        let navLinks = document.querySelector('.nav__links');
+        navLinks.classList.toggle('active');
+    }
+
+    // Agregar un evento clic a cada enlace del menú desplegable para cerrar el menú después de hacer clic en uno de ellos
+    var links = document.querySelectorAll('.nav__links a');
+    links.forEach(function (link) {
+        link.addEventListener('click', function () {
+            let navLinks = document.querySelector('.nav__links');
+            navLinks.classList.remove('active');
+        });
+    });
+
+</script>
